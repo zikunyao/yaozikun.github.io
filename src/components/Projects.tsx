@@ -114,7 +114,7 @@ export default function Projects() {
     <section id="projects" style={{ zIndex: 1, position: 'relative' }}>
       <div className="content-col">
         <p className="section-label !mb-1">Featured Projects</p>
-        <h2 className="text-2xl font-bold text-[#f1f5f9] tracking-tight mb-6">What I Build</h2>
+        <h2 className="section-heading">Selected work.</h2>
 
         {/* Scroll track */}
         <div
@@ -131,12 +131,9 @@ export default function Projects() {
                 className={`flex flex-col justify-between snap-center shrink-0 anim-up relative overflow-hidden cursor-pointer group ${animatingIdx === i ? 'card-expand-pulse' : ''}`}
                 style={{
                   width: 'min(440px, 82vw)',
-                  background: isOpen
-                    ? `linear-gradient(135deg, ${p.bgGlow}, ${p.accent}0D, rgba(15,23,42,0.95))`
-                    : `linear-gradient(135deg, ${p.bgGlow}, rgba(15,23,42,0.9))`,
-                  border: `1px solid ${isOpen ? p.accent + '50' : p.accent + '20'}`,
-                  borderLeft: `4px solid ${p.accent}`,
-                  borderRadius: 16, padding: '1.5rem',
+                  background: isOpen ? '#161616' : '#101010',
+                  border: `1px solid ${isOpen ? p.accent + '55' : 'rgba(255,255,255,0.09)'}`,
+                  borderRadius: 28, padding: '1.75rem',
                   animationDelay: `${i * 0.1}s`,
                   transition: 'background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease',
                 }}
@@ -171,7 +168,7 @@ export default function Projects() {
                       {p.num}
                     </span>
                     <div>
-                      <h3 className="text-lg font-bold text-white tracking-tight">{p.title}</h3>
+                      <h3 className="text-xl font-semibold text-white tracking-tight">{p.title}</h3>
                       <p className="text-[0.7rem] text-slate-400">{p.subtitle}</p>
                     </div>
                   </div>
@@ -238,10 +235,9 @@ export default function Projects() {
               <div
                 className="mt-6"
                 style={{
-                  background: `linear-gradient(135deg, ${expandedProject.bgGlow}, rgba(15,23,42,0.95))`,
-                  border: `1px solid ${expandedProject.accent}30`,
-                  borderLeft: `4px solid ${expandedProject.accent}`,
-                  borderRadius: 16, padding: '1.75rem',
+                  background: '#101010',
+                  border: '1px solid rgba(255,255,255,0.09)',
+                  borderRadius: 28, padding: '2rem',
                 }}
               >
                 {/* Header */}

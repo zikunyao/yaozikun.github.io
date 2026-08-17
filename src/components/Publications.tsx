@@ -4,7 +4,7 @@ export default function Publications() {
       <hr className="section-divider" />
       <div className="content-col">
         <p className="section-label">Publications & Outputs</p>
-        <h2 className="section-heading">Research Output</h2>
+        <h2 className="section-heading">Research, made tangible.</h2>
 
         <div className="space-y-8">
 

@@ -11,7 +11,7 @@ export default function Skills() {
       <hr className="section-divider" />
       <div className="content-col">
         <p className="section-label">Skills</p>
-        <h2 className="section-heading">Technical Competence</h2>
+        <h2 className="section-heading">Tools for discovery.</h2>
         <div className="grid gap-4 md:grid-cols-2 max-w-2xl">
           {groups.map((g) => (
             <div key={g.label} className="flex items-baseline gap-3 text-sm">

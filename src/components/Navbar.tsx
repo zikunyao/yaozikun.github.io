@@ -7,19 +7,19 @@ const links = [
 
 export default function Navbar() {
   return (
-    <nav className="sticky top-0 z-50 border-b border-slate-800/50" style={{ background: 'rgba(5, 11, 20, 0.85)', backdropFilter: 'blur(16px)' }}>
-      <div className="content-col flex items-center justify-between h-12">
+    <nav className="site-nav sticky top-0 z-50">
+      <div className="content-col flex h-14 items-center justify-between">
         <a href="#" className="flex items-center gap-2 group">
-          <span className="w-6 h-6 rounded-md bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center text-[0.6rem] font-bold text-white tracking-tighter shrink-0 group-hover:from-blue-400 group-hover:to-cyan-300 transition-all">
+          <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white text-[0.6rem] font-bold tracking-tighter text-black transition-transform group-hover:scale-105">
             ZY
           </span>
-          <span className="nav-brand-label text-sm font-semibold text-white tracking-tight group-hover:text-blue-300 transition-colors">
+          <span className="nav-brand-label text-sm font-semibold tracking-tight text-white">
             Zikun Yao
           </span>
         </a>
         <div className="nav-links flex items-center gap-5">
           {links.map((l) => (
-            <a key={l.href} href={l.href} className="text-xs text-slate-400 hover:text-white transition-colors">
+            <a key={l.href} href={l.href} className="text-xs text-[#a1a1a6] transition-colors hover:text-white">
               {l.label}
             </a>
           ))}

@@ -28,8 +28,8 @@ export default function ParticleBackground() {
     let animId: number;
     let time = 0;
 
-    const PARTICLE_COUNT = 120;
-    const CONNECT_DIST = 150;
+    const PARTICLE_COUNT = 34;
+    const CONNECT_DIST = 110;
 
     function resize() {
       canvas!.width = window.innerWidth;
@@ -44,7 +44,7 @@ export default function ParticleBackground() {
         y: Math.random() * canvas.height,
         vx: (Math.random() - 0.5) * 0.35,
         vy: (Math.random() - 0.5) * 0.35,
-        radius: Math.random() * 2 + 0.6,
+        radius: Math.random() * 1.1 + 0.35,
         color: COLORS[i % COLORS.length],
         pulsePhase: Math.random() * Math.PI * 2,
       });
@@ -68,7 +68,7 @@ export default function ParticleBackground() {
 
         // Pulsing opacity
         const pulse = 0.5 + 0.5 * Math.sin(time * 3 + p.pulsePhase);
-        const alpha = (0.4 + pulse * 0.6).toFixed(2);
+        const alpha = (0.12 + pulse * 0.2).toFixed(2);
         const fill = p.color.replace('__A__', alpha);
 
         // Glow circle
@@ -94,7 +94,7 @@ export default function ParticleBackground() {
           const dy = particles[i].y - particles[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < CONNECT_DIST) {
-            const alpha = ((1 - dist / CONNECT_DIST) * 0.08).toFixed(3);
+            const alpha = ((1 - dist / CONNECT_DIST) * 0.018).toFixed(3);
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);

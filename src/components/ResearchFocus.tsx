@@ -40,10 +40,10 @@ export default function ResearchFocus() {
       <div className="content-col">
         <div className="grid gap-4 md:grid-cols-3">
           {foci.map((f, i) => (
-            <div key={f.label} className={`glass p-5 anim-up ${i === 0 ? '' : `anim-up-${i + 1}`}`}>
-              <div className="mb-3">{f.icon}</div>
-              <h3 className="text-base font-semibold text-white mb-2">{f.label}</h3>
-              <p className="text-sm text-slate-400 leading-relaxed mb-4">{f.desc}</p>
+            <div key={f.label} className={`glass focus-card p-7 anim-up ${i === 0 ? '' : `anim-up-${i + 1}`}`}>
+              <div className="mb-8">{f.icon}</div>
+              <h3 className="mb-3 text-xl font-semibold tracking-tight text-white">{f.label}</h3>
+              <p className="mb-7 text-sm leading-relaxed text-[#a1a1a6]">{f.desc}</p>
               <div className="flex flex-wrap gap-1.5">
                 {f.tags.map((t) => <span key={t} className="tag">{t}</span>)}
               </div>
