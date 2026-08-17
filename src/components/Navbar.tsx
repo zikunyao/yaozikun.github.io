@@ -13,11 +13,11 @@ export default function Navbar() {
           <span className="w-6 h-6 rounded-md bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center text-[0.6rem] font-bold text-white tracking-tighter shrink-0 group-hover:from-blue-400 group-hover:to-cyan-300 transition-all">
             ZY
           </span>
-          <span className="text-sm font-semibold text-white tracking-tight group-hover:text-blue-300 transition-colors">
+          <span className="nav-brand-label text-sm font-semibold text-white tracking-tight group-hover:text-blue-300 transition-colors">
             Zikun Yao
           </span>
         </a>
-        <div className="flex items-center gap-5">
+        <div className="nav-links flex items-center gap-5">
           {links.map((l) => (
             <a key={l.href} href={l.href} className="text-xs text-slate-400 hover:text-white transition-colors">
               {l.label}

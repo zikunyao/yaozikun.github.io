@@ -10,6 +10,8 @@ interface ProjectData {
   accent: string;
   bgGlow: string;
   demoUrl?: string;
+  referenceUrl?: string;
+  referenceLabel?: string;
   images?: { src: string; label: string }[];
 }
 
@@ -53,6 +55,8 @@ const projects: ProjectData[] = [
       'HVRClassify software copyright',
     ],
     accent: '#06b6d4', bgGlow: 'rgba(6,182,212,0.06)',
+    referenceUrl: 'https://doi.org/10.1128/aem.00557-25',
+    referenceLabel: 'Read the paper',
     images: [
       { src: '/awards/aem-paper.png', label: 'AEM Paper — Cao et al., 2025' },
       { src: '/awards/hvrclassify-copyright.png', label: 'HVRClassify Software Copyright' },
@@ -186,10 +190,18 @@ export default function Projects() {
                       {h}
                     </p>
                   ))}
-                  <p className="text-[0.65rem] font-medium mt-2 transition-colors duration-300"
+                  <button
+                    type="button"
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      toggleExpand(i);
+                    }}
+                    aria-expanded={isOpen}
+                    aria-controls="project-details"
+                    className="text-[0.65rem] font-medium mt-2 transition-colors duration-300 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-400"
                     style={{ color: p.accent }}>
                     {isOpen ? 'Collapse −' : 'View details +'}
-                  </p>
+                  </button>
                 </div>
               </div>
             );
@@ -201,6 +213,9 @@ export default function Projects() {
           {projects.map((p, i) => (
             <button
               key={i}
+              type="button"
+              aria-label={`Show ${p.title}`}
+              aria-current={i === activeIdx ? 'true' : undefined}
               onClick={() => {
                 const el = scrollRef.current;
                 if (!el) return;
@@ -217,7 +232,7 @@ export default function Projects() {
         </div>
 
         {/* === Expandable detail panel === */}
-        <div className={`expand-wrapper ${expanded !== null ? 'open' : ''}`} ref={detailRef}>
+        <div id="project-details" className={`expand-wrapper ${expanded !== null ? 'open' : ''}`} ref={detailRef}>
           <div className="expand-inner">
             {expandedProject && (
               <div
@@ -241,6 +256,8 @@ export default function Projects() {
                     </h3>
                   </div>
                   <button
+                    type="button"
+                    aria-label={`Close ${expandedProject.title} details`}
                     onClick={() => toggleExpand(contentIdx!)}
                     className="w-8 h-8 rounded-full border border-slate-700 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-500 transition-all"
                   >
@@ -265,6 +282,14 @@ export default function Projects() {
                       Open Live Demo →
                     </a>
                   )}
+                  {expandedProject.referenceUrl && (
+                    <a href={expandedProject.referenceUrl} target="_blank" rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-sm font-medium hover:opacity-80 transition-opacity mt-2 ml-4"
+                      style={{ color: expandedProject.accent }}
+                    >
+                      {expandedProject.referenceLabel ?? 'Open reference'} →
+                    </a>
+                  )}
                 </div>
 
                 {/* Image gallery */}
@@ -275,6 +300,8 @@ export default function Projects() {
                       {expandedProject.images.map((img) => (
                         <button
                           key={img.src}
+                          type="button"
+                          aria-label={`View ${img.label}`}
                           onClick={() => setImgModal(img.src)}
                           className="text-left group/img overflow-hidden rounded-xl border border-slate-800 hover:border-slate-600 transition-all duration-300"
                         >
@@ -300,10 +327,15 @@ export default function Projects() {
       {/* Lightbox modal */}
       {imgModal && (
         <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Certificate preview"
           className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
           onClick={() => setImgModal(null)}
         >
           <button
+            type="button"
+            aria-label="Close certificate preview"
             onClick={() => setImgModal(null)}
             className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-all z-10"
           >
