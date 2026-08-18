@@ -78,18 +78,27 @@ section:not(.hero-section) > .content-col {
   bottom: 0;
   background: rgba(94,92,230,0.07);
 }
-.hero-portrait-ambient {
+.sequence-field {
   position: absolute;
   z-index: -1;
-  right: clamp(-6rem, -4vw, -2rem);
-  bottom: -8rem;
-  width: min(31vw, 430px);
-  height: auto;
-  opacity: 0.13;
-  filter: grayscale(1) contrast(1.08);
-  mask-image: linear-gradient(to bottom, transparent 0%, black 24%, black 67%, transparent 96%);
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 24%, black 67%, transparent 96%);
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse at center, black 0%, transparent 68%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 0%, transparent 68%);
 }
+.sequence-field span {
+  position: absolute;
+  color: rgba(255,255,255,0.035);
+  font-family: var(--font-mono);
+  font-size: clamp(1rem, 2.3vw, 2rem);
+  letter-spacing: .38em;
+  white-space: nowrap;
+}
+.sequence-field span:nth-child(1) { top: 18%; left: -3%; transform: rotate(-7deg); }
+.sequence-field span:nth-child(2) { top: 31%; right: -5%; transform: rotate(5deg); }
+.sequence-field span:nth-child(3) { bottom: 25%; left: -2%; transform: rotate(4deg); }
+.sequence-field span:nth-child(4) { right: 2%; bottom: 13%; transform: rotate(-5deg); }
 .hero-link {
   color: #2997ff;
   font-weight: 500;
@@ -239,7 +248,7 @@ section:not(.hero-section) > .content-col {
 @media (max-width: 767px) {
   section:not(.hero-section) > .content-col { padding-top: 4.5rem; padding-bottom: 4.5rem; }
   .hero-title-centered { font-size: clamp(3.7rem, 18vw, 5.5rem); }
-  .hero-portrait-ambient { width: 75vw; right: -35vw; bottom: -4rem; opacity: .09; }
+  .sequence-field span { opacity: .65; font-size: .8rem; }
   .research-tile { min-height: 330px; }
 }
 

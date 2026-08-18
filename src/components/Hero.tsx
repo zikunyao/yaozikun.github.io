@@ -3,16 +3,12 @@ export default function Hero() {
     <section className="hero-section hero-centered relative overflow-hidden" style={{ zIndex: 1 }}>
       <div className="hero-orb hero-orb-one" aria-hidden="true" />
       <div className="hero-orb hero-orb-two" aria-hidden="true" />
-      <img
-        src="/yaozikun.png"
-        alt=""
-        width="1024"
-        height="1536"
-        loading="eager"
-        fetchPriority="high"
-        className="hero-portrait-ambient"
-        aria-hidden="true"
-      />
+      <div className="sequence-field" aria-hidden="true">
+        <span>MET LYS GLY VAL ALA</span>
+        <span>ESM · MAMBA · HVR</span>
+        <span>G C T A C G T A</span>
+        <span>PROTEIN → FUNCTION</span>
+      </div>
 
       <div className="content-col relative py-24 text-center md:py-36">
         <div className="mx-auto max-w-5xl anim-up">
