@@ -1,8 +1,7 @@
 const links = [
-  { label: 'Projects', href: '#projects' },
-  { label: 'Publications', href: '#publications' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Work', href: '#projects' },
+  { label: 'Research', href: '#publications' },
+  { label: 'About', href: '#about' },
 ];
 
 export default function Navbar() {
