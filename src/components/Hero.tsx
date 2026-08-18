@@ -1,36 +1,35 @@
+import SequenceLab from './SequenceLab';
+
 export default function Hero() {
   return (
-    <section className="hero-section hero-centered relative overflow-hidden" style={{ zIndex: 1 }}>
+    <section className="hero-section hero-showcase relative overflow-hidden" style={{ zIndex: 1 }}>
       <div className="hero-orb hero-orb-one" aria-hidden="true" />
       <div className="hero-orb hero-orb-two" aria-hidden="true" />
-      <div className="sequence-field" aria-hidden="true">
-        <span>MET LYS GLY VAL ALA</span>
-        <span>ESM · MAMBA · HVR</span>
-        <span>G C T A C G T A</span>
-        <span>PROTEIN → FUNCTION</span>
-      </div>
-
-      <div className="content-col relative py-24 text-center md:py-36">
-        <div className="mx-auto max-w-5xl anim-up">
-          <p className="eyebrow mb-8">Zikun Yao · Biomedical Engineering</p>
-          <h1 className="hero-title hero-title-centered">
-            Computation,
-            <span className="hero-gradient block">in service of life.</span>
-          </h1>
-          <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-[#a1a1a6] md:text-xl">
-            Building intelligent systems for proteins, biological sequences,
-            and biomedical discovery at Shenzhen University.
-          </p>
-          <div className="mt-10 flex items-center justify-center gap-7 text-sm">
-            <a href="#projects" className="hero-link">View selected work <span>↓</span></a>
-            <a href="/cv.pdf" className="hero-link hero-link-muted" download>Download CV ↗</a>
+      <div className="content-col relative py-20 md:py-28 lg:py-32">
+        <div className="grid items-center gap-14 lg:grid-cols-[0.88fr_1.12fr] lg:gap-20">
+          <div className="anim-up">
+            <div className="hero-kicker"><span /> RESEARCH MODE · LIVE</div>
+            <h1 className="showcase-title mt-7">
+              I build AI
+              <span className="hero-gradient block">for biology.</span>
+            </h1>
+            <p className="mt-7 max-w-xl text-lg leading-relaxed text-[#a1a1a6]">
+              From protein language models to research platforms—turning biological
+              questions into systems that can be tested, used, and extended.
+            </p>
+            <div className="mt-9 flex flex-wrap items-center gap-4">
+              <a href="#projects" className="btn-accent">Launch project tour</a>
+              <a href="https://github.com/zikunyao" target="_blank" rel="noopener noreferrer" className="hero-link hero-link-muted">Inspect the code ↗</a>
+            </div>
+            <div className="mt-12 flex gap-8 border-t border-white/10 pt-6">
+              <div><strong className="hero-stat">04</strong><span>Systems shipped</span></div>
+              <div><strong className="hero-stat">01</strong><span>SCI publication</span></div>
+              <div><strong className="hero-stat">C4</strong><span>National prize</span></div>
+            </div>
           </div>
-        </div>
-
-        <div className="hero-proof mx-auto mt-20 grid max-w-4xl grid-cols-1 gap-px overflow-hidden rounded-3xl border border-white/10 bg-white/10 text-left sm:grid-cols-3">
-          <div><strong>01</strong><span>SCI publication</span></div>
-          <div><strong>04</strong><span>Research systems</span></div>
-          <div><strong>National</strong><span>Second prize · C4</span></div>
+          <div className="anim-up anim-up-2">
+            <SequenceLab />
+          </div>
         </div>
       </div>
     </section>

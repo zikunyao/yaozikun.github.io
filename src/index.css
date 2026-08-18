@@ -51,6 +51,104 @@ section:not(.hero-section) > .content-col {
     radial-gradient(ellipse at 50% 115%, rgba(0,113,227,0.18), transparent 44%),
     linear-gradient(180deg, #030303 0%, #000 72%);
 }
+.hero-showcase {
+  min-height: calc(100svh - 3.5rem);
+  background:
+    linear-gradient(90deg, rgba(0,0,0,.98) 0%, rgba(0,0,0,.88) 46%, rgba(4,10,22,.84) 100%),
+    radial-gradient(circle at 82% 45%, rgba(41,151,255,.2), transparent 34%);
+}
+.hero-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  color: #86868b;
+  font-family: var(--font-mono);
+  font-size: .66rem;
+  letter-spacing: .12em;
+}
+.hero-kicker span {
+  width: .45rem;
+  height: .45rem;
+  border-radius: 50%;
+  background: #30d158;
+  box-shadow: 0 0 14px rgba(48,209,88,.85);
+  animation: statusPulse 2s ease-in-out infinite;
+}
+.showcase-title {
+  color: #f5f5f7;
+  font-size: clamp(4rem, 7vw, 7.3rem);
+  font-weight: 700;
+  line-height: .92;
+  letter-spacing: -.075em;
+}
+.hero-stat { display: block; color: #fff; font-size: 1.15rem; font-weight: 600; }
+.hero-stat + span { display: block; margin-top: .25rem; color: #6e6e73; font-size: .67rem; }
+
+.sequence-lab {
+  position: relative;
+  min-height: 520px;
+  overflow: hidden;
+  border: 1px solid rgba(120,190,255,.18);
+  border-radius: 30px;
+  background:
+    linear-gradient(rgba(90,160,255,.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(90,160,255,.045) 1px, transparent 1px),
+    radial-gradient(circle at 50% 52%, rgba(0,113,227,.15), transparent 52%),
+    rgba(6,10,18,.88);
+  background-size: 34px 34px, 34px 34px, auto, auto;
+  box-shadow: 0 40px 120px rgba(0,70,180,.16), inset 0 1px rgba(255,255,255,.06);
+}
+.sequence-lab::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(110deg, transparent 38%, rgba(255,255,255,.035) 50%, transparent 62%);
+  transform: translateX(-100%);
+  animation: labSheen 7s ease-in-out infinite;
+}
+.sequence-lab canvas { position: absolute; inset: 48px 0 76px; width: 100%; height: calc(100% - 124px); }
+.lab-toolbar {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 1.2rem;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  color: #6e6e73;
+  font-family: var(--font-mono);
+  font-size: .58rem;
+  letter-spacing: .08em;
+}
+.lab-toolbar span:first-child { color: #9fdcff; }
+.lab-toolbar i { display: inline-block; width: 5px; height: 5px; margin-right: 6px; border-radius: 50%; background: #64d2ff; box-shadow: 0 0 10px #64d2ff; }
+.lab-metrics {
+  position: absolute;
+  z-index: 2;
+  left: 1.2rem;
+  right: 1.2rem;
+  bottom: 1rem;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 1px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.07);
+  border-radius: 13px;
+  background: rgba(255,255,255,.07);
+}
+.lab-metrics div { padding: .7rem .8rem; background: rgba(4,8,15,.86); }
+.lab-metrics span { display: block; color: #56565b; font-size: .55rem; text-transform: uppercase; letter-spacing: .1em; }
+.lab-metrics strong { display: block; margin-top: .25rem; color: #d2d2d7; font-family: var(--font-mono); font-size: .7rem; font-weight: 500; }
+.lab-metrics .lab-active { color: #30d158; }
+.lab-corner { position: absolute; width: 20px; height: 20px; border-color: rgba(100,210,255,.5); }
+.lab-corner-a { top: 60px; left: 14px; border-top: 1px solid; border-left: 1px solid; }
+.lab-corner-b { right: 14px; bottom: 90px; border-right: 1px solid; border-bottom: 1px solid; }
+
+@keyframes statusPulse { 50% { opacity: .45; transform: scale(.8); } }
+@keyframes labSheen { 0%,55% { transform: translateX(-110%); } 82%,100% { transform: translateX(110%); } }
 .hero-title-centered {
   max-width: none;
   font-size: clamp(4rem, 9vw, 8.5rem);
@@ -250,6 +348,9 @@ section:not(.hero-section) > .content-col {
   .hero-title-centered { font-size: clamp(3.7rem, 18vw, 5.5rem); }
   .sequence-field span { opacity: .65; font-size: .8rem; }
   .research-tile { min-height: 330px; }
+  .showcase-title { font-size: clamp(3.8rem, 18vw, 5.4rem); }
+  .sequence-lab { min-height: 430px; }
+  .hero-stat + span { max-width: 70px; }
 }
 
 :focus-visible {
