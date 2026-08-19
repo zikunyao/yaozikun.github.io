@@ -1,4 +1,4 @@
-import SequenceLab from './SequenceLab';
+import ResearchDeck from './ResearchDeck';
 
 export default function Hero() {
   return (
@@ -28,7 +28,7 @@ export default function Hero() {
             </div>
           </div>
           <div className="anim-up anim-up-2">
-            <SequenceLab />
+            <ResearchDeck />
           </div>
         </div>
       </div>
