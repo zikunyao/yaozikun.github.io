@@ -1,4 +1,3 @@
-import ParticleBackground from './components/ParticleBackground';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import ResearchFocus from './components/ResearchFocus';
@@ -13,7 +12,6 @@ import Footer from './components/Footer';
 export default function App() {
   return (
     <div className="min-h-screen flex flex-col relative">
-      <ParticleBackground />
       <Navbar />
       <main className="flex-1">
         <Hero />

@@ -9,111 +9,29 @@ const slides = [
 
 export default function ResearchDeck() {
   const viewportRef = useRef<HTMLDivElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
-  const state = useRef({ x: 0, target: 0, velocity: 0, startX: 0, startPos: 0, dragging: false, frame: 0 });
   const [active, setActive] = useState(0);
-
-  const cardWidth = () => (viewportRef.current?.clientWidth ?? 600) + 18;
-  const snapTo = (index: number) => {
-    const next = Math.max(0, Math.min(slides.length - 1, index));
-    state.current.target = -next * cardWidth();
-    setActive(next);
-  };
-
   useEffect(() => {
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const animation = state.current;
-    const tick = () => {
-      const s = state.current;
-      if (!s.dragging) {
-        if (reduced) s.x = s.target;
-        else {
-          const force = (s.target - s.x) * 0.16;
-          s.velocity = (s.velocity + force) * 0.64;
-          s.x += s.velocity;
-          if (Math.abs(s.target - s.x) < 0.08 && Math.abs(s.velocity) < 0.08) {
-            s.x = s.target;
-            s.velocity = 0;
-          }
-        }
-      }
-      if (trackRef.current) trackRef.current.style.transform = `translate3d(${s.x}px,0,0)`;
-      s.frame = requestAnimationFrame(tick);
-    };
-    state.current.frame = requestAnimationFrame(tick);
-    const resize = () => snapTo(active);
-    window.addEventListener('resize', resize);
-    return () => {
-      cancelAnimationFrame(animation.frame);
-      window.removeEventListener('resize', resize);
-    };
-  }, [active]);
-
-  const pointerDown = (event: React.PointerEvent) => {
-    const s = state.current;
-    s.dragging = true;
-    s.startX = event.clientX;
-    s.startPos = s.x;
-    s.velocity = 0;
-    event.currentTarget.setPointerCapture(event.pointerId);
+    const el = viewportRef.current; if (!el) return;
+    let frame = 0;
+    const update = () => { cancelAnimationFrame(frame); frame = requestAnimationFrame(() => setActive(Math.round(el.scrollLeft / el.clientWidth))); };
+    el.addEventListener('scroll', update, { passive: true });
+    return () => { cancelAnimationFrame(frame); el.removeEventListener('scroll', update); };
+  }, []);
+  const show = (index: number) => {
+    const el = viewportRef.current; if (!el) return;
+    el.scrollTo({ left: index * el.clientWidth, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
   };
-  const pointerMove = (event: React.PointerEvent) => {
-    const s = state.current;
-    if (!s.dragging) return;
-    const raw = s.startPos + event.clientX - s.startX;
-    const minimum = -(slides.length - 1) * cardWidth();
-    const next = raw > 0 ? raw * 0.16 : raw < minimum ? minimum + (raw - minimum) * 0.16 : raw;
-    s.velocity = next - s.x;
-    s.x = next;
-  };
-  const pointerUp = (event: React.PointerEvent) => {
-    const s = state.current;
-    if (!s.dragging) return;
-    s.dragging = false;
-    event.currentTarget.releasePointerCapture(event.pointerId);
-    const projected = s.x + Math.max(-24, Math.min(24, s.velocity)) * 3;
-    snapTo(Math.round(-projected / cardWidth()));
-  };
-
-  return (
-    <div className="research-deck-shell">
-      <div className="deck-topbar">
-        <span><i /> RESEARCH SYSTEMS</span>
-        <span>DRAG TO EXPLORE</span>
-      </div>
-      <div
-        ref={viewportRef}
-        className="research-deck-viewport"
-        onPointerDown={pointerDown}
-        onPointerMove={pointerMove}
-        onPointerUp={pointerUp}
-        onPointerCancel={pointerUp}
-      >
-        <div ref={trackRef} className="research-deck-track">
-          {slides.map((slide, index) => (
-            <article key={slide.id} className="deck-slide" aria-hidden={index !== active}>
-              <div className="deck-copy">
-                <span className="deck-eyebrow">{slide.eyebrow}</span>
-                <h2>{slide.title}</h2>
-                <p>{slide.copy}</p>
-              </div>
-              <div className={`deck-visual ${slide.visual}`} aria-hidden="true">
-                {slide.visual === 'patho' && <><b>Sequence</b><b>Secretion</b><b>Localization</b><b>Host–PPI</b><em>Mechanism</em></>}
-                {slide.visual === 'mescan' && <><span/><span/><span/><span/><span/><i/></>}
-                {slide.visual === 'hvr' && <><div/><div/><div/><div/><div/><div/></>}
-                {slide.visual === 'literature' && <><b>01</b><b>02</b><b>03</b><em>RAG</em></>}
-              </div>
-              <span className="deck-index">0{index + 1}</span>
-            </article>
-          ))}
-        </div>
-      </div>
-      <div className="deck-controls">
-        <div className="deck-dots">
-          {slides.map((slide, index) => <button key={slide.id} onClick={() => snapTo(index)} aria-label={`Show ${slide.id}`} aria-current={index === active ? 'true' : undefined}><span /></button>)}
-        </div>
-        <span>{active + 1} / {slides.length}</span>
-      </div>
-    </div>
-  );
+  return <div className="research-deck-shell">
+    <div className="deck-topbar"><span><i /> RESEARCH SYSTEMS</span><span>SWIPE TO EXPLORE</span></div>
+    <div ref={viewportRef} className="research-deck-viewport"><div className="research-deck-track">{slides.map((slide, index) => <article key={slide.id} className="deck-slide">
+      <div className="deck-copy"><span className="deck-eyebrow">{slide.eyebrow}</span><h2>{slide.title}</h2><p>{slide.copy}</p></div>
+      <div className={`deck-visual ${slide.visual}`} aria-hidden="true">
+        {slide.visual === 'patho' && <><b>Sequence</b><b>Secretion</b><b>Localization</b><b>Host–PPI</b><em>Mechanism</em></>}
+        {slide.visual === 'mescan' && <><span/><span/><span/><span/><span/><i/></>}
+        {slide.visual === 'hvr' && <><div/><div/><div/><div/><div/><div/></>}
+        {slide.visual === 'literature' && <><b>01</b><b>02</b><b>03</b><em>RAG</em></>}
+      </div><span className="deck-index">0{index + 1}</span>
+    </article>)}</div></div>
+    <div className="deck-controls"><div className="deck-dots">{slides.map((slide, index) => <button key={slide.id} onClick={() => show(index)} aria-label={`Show ${slide.id}`} aria-current={index === active ? 'true' : undefined}><span /></button>)}</div><span>{active + 1} / {slides.length}</span></div>
+  </div>;
 }
