@@ -27,7 +27,7 @@ export default function Hero() {
               <div><strong className="hero-stat">C4</strong><span>National prize</span></div>
             </div>
           </div>
-          <div className="anim-up anim-up-2">
+          <div className="anim-up anim-up-2 min-w-0">
             <ResearchDeck />
           </div>
         </div>

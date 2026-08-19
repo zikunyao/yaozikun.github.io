@@ -101,6 +101,9 @@ section:not(.hero-section) > .content-col {
 
 .research-deck-shell {
   position: relative;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
   overflow: hidden;
   border: 1px solid rgba(255,255,255,.13);
   border-radius: 32px;
@@ -132,6 +135,8 @@ section:not(.hero-section) > .content-col {
 .deck-topbar i { display: inline-block; width: 5px; height: 5px; margin-right: 7px; border-radius: 50%; background: #30d158; box-shadow: 0 0 10px #30d158; }
 .research-deck-viewport {
   position: relative;
+  width: 100%;
+  min-width: 0;
   height: 450px;
   overflow: hidden;
   cursor: grab;
@@ -141,6 +146,8 @@ section:not(.hero-section) > .content-col {
 .research-deck-viewport:active { cursor: grabbing; }
 .research-deck-track {
   display: flex;
+  width: 100%;
+  min-width: 0;
   height: 100%;
   gap: 18px;
   will-change: transform;
@@ -149,6 +156,7 @@ section:not(.hero-section) > .content-col {
   position: relative;
   flex: 0 0 100%;
   width: 100%;
+  min-width: 0;
   height: 100%;
   overflow: hidden;
   padding: 2.1rem;

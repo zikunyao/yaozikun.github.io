@@ -28,9 +28,13 @@ export default function ResearchDeck() {
       if (!s.dragging) {
         if (reduced) s.x = s.target;
         else {
-          const force = (s.target - s.x) * 0.105;
-          s.velocity = (s.velocity + force) * 0.76;
+          const force = (s.target - s.x) * 0.16;
+          s.velocity = (s.velocity + force) * 0.64;
           s.x += s.velocity;
+          if (Math.abs(s.target - s.x) < 0.08 && Math.abs(s.velocity) < 0.08) {
+            s.x = s.target;
+            s.velocity = 0;
+          }
         }
       }
       if (trackRef.current) trackRef.current.style.transform = `translate3d(${s.x}px,0,0)`;
@@ -56,7 +60,9 @@ export default function ResearchDeck() {
   const pointerMove = (event: React.PointerEvent) => {
     const s = state.current;
     if (!s.dragging) return;
-    const next = s.startPos + event.clientX - s.startX;
+    const raw = s.startPos + event.clientX - s.startX;
+    const minimum = -(slides.length - 1) * cardWidth();
+    const next = raw > 0 ? raw * 0.16 : raw < minimum ? minimum + (raw - minimum) * 0.16 : raw;
     s.velocity = next - s.x;
     s.x = next;
   };
@@ -65,7 +71,7 @@ export default function ResearchDeck() {
     if (!s.dragging) return;
     s.dragging = false;
     event.currentTarget.releasePointerCapture(event.pointerId);
-    const projected = s.x + s.velocity * 8;
+    const projected = s.x + Math.max(-24, Math.min(24, s.velocity)) * 3;
     snapTo(Math.round(-projected / cardWidth()));
   };
 
