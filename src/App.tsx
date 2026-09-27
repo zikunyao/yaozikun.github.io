@@ -1,6 +1,5 @@
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import ResearchFocus from './components/ResearchFocus';
 import About from './components/About';
 import Projects from './components/Projects';
 import Publications from './components/Publications';
@@ -8,6 +7,7 @@ import Skills from './components/Skills';
 import CVSection from './components/CVSection';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import { Reveal } from './components/ProjectVisual';
 
 export default function App() {
   return (
@@ -15,13 +15,12 @@ export default function App() {
       <Navbar />
       <main className="flex-1">
         <Hero />
-        <ResearchFocus />
-        <About />
         <Projects />
-        <Publications />
-        <Skills />
+        <Reveal><Publications /></Reveal>
+        <Reveal><About /></Reveal>
+        <Reveal><Skills /></Reveal>
         <CVSection />
-        <Contact />
+        <Reveal><Contact /></Reveal>
       </main>
       <Footer />
     </div>
