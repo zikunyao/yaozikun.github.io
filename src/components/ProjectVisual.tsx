@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import type { CSSProperties, ReactNode } from 'react';
+import type { ReactNode } from 'react';
+import SketchStory from './SketchStory';
 
 export function Reveal({ children, className = '' }: { children: ReactNode; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -65,13 +66,13 @@ export default function ProjectVisual({ id }: { id: string }) {
   </Reveal>;
   if (id === 'mescan') return <Reveal className="project-visual small-visual">
     <div className="mescan-preview"><div className="visual-toolbar"><span>MEscan</span><span className="work-in-progress">In development</span></div>
-      <div className="sequence-map" aria-hidden="true">{Array.from({length:7},(_,row) => <div key={row}>{Array.from({length:23},(_,column) => <i key={column} className={(column >= 6 && column <= 9) || (column >= 16 && column <= 18) ? 'variable-region' : ''} style={{'--delay':`${row * 70 + column * 12}ms`} as CSSProperties}/>)}</div>)}</div>
+      <SketchStory kind="sequence"/>
       <div className="visual-caption"><span>Mosaic evolution, under investigation.</span><small>Concept illustration · not experimental data</small></div>
     </div>
   </Reveal>;
   return <Reveal className="project-visual small-visual"><div className="pbl-preview">
     <div className="visual-toolbar"><span>PBL PPT AGENT</span><span>College experiment</span></div>
-    <div className="slide-stack" aria-hidden="true"><div className="mock-slide back"><span>02 / Structure</span><i/><i/><i/></div><div className="mock-slide front"><span>01 / PBL</span><strong>A small idea.<br/>A useful slide.</strong><i/><i/></div></div>
+    <SketchStory kind="slides"/>
     <div className="visual-caption"><span>Helping prepare PBL presentations.</span><small>Concept illustration · not generated output</small></div>
   </div></Reveal>;
 }

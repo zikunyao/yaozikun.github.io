@@ -147,4 +147,13 @@ section:not(.hero-section)>.content-col { padding-block:72px; }
 .has-entered .perspective-sketch { animation:sketch-arrive .8s ease-out both; }
 @keyframes sketch-arrive { from { transform:translateY(12px) rotate(-5deg); } to { transform:none; } }
 @media(max-width:767px) { .perspective-sketch { width:170px; margin-top:22px; } }
+.sketch-story { background:#f8f5ec; }
+.sketch-frames { display:grid; place-items:center; height:280px; overflow:hidden; }
+.sketch-frames img { grid-area:1 / 1; width:280px; height:280px; object-fit:contain; opacity:0; transform:translateY(10px) rotate(-6deg) scale(.94); transition:opacity .5s ease, transform .7s cubic-bezier(.22,.7,.3,1); pointer-events:none; }
+.sketch-frames img.current { opacity:1; transform:translateY(0) rotate(0) scale(1); }
+.sketch-story-controls { display:flex; align-items:center; gap:12px; padding:0 18px 14px; color:#746a59; }
+.sketch-story-controls>span { flex:1; font-size:11px; line-height:1.4; }
+.sketch-frame-buttons { display:flex; gap:5px; }.sketch-frame-buttons button { min-width:28px; min-height:32px; font-size:10px; border-bottom:2px solid transparent; }.sketch-frame-buttons button[aria-pressed="true"] { color:#25251e; border-color:#90aa58; }
+.sketch-toggle { border:1px solid #cfc5b3; border-radius:50%; width:32px; height:32px; font-size:12px; flex-shrink:0; }
+@media(max-width:767px) { .sketch-frames { height:230px; }.sketch-frames img { width:230px; height:230px; }.sketch-story-controls { gap:8px; padding-inline:14px; } }
 @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; }*,*::before,*::after { animation:none!important; transition:none!important; } }
