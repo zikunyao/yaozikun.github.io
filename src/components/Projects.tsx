@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 const projects = [
   { num:'01', title:'PathoMamba', kind:'AI PLATFORM · PATHOGEN BIOLOGY', statement:'A research system that connects prediction with biological interpretation.', desc:'SWA, Bi-Mamba and ESM2 embeddings power four connected modules for secretion proteins—from identification to host–pathogen interaction.', proof:['C4 National Second Prize','NCCBB 2026 Oral Presentation','4 modules + GnTxSPdb'], tech:['SWA + Bi-Mamba','ESM2','Protein LMs'], href:'https://mbs.szu-bioinf.org/PathoMamba/frontend/', action:'Open live platform', image:'/awards/c4-national.jpg' },
   { num:'02', title:'MEscan', kind:'SCIENTIFIC SOFTWARE · EVOLUTION', statement:'Turning a complex evolutionary screen into a reproducible workflow.', desc:'An automated platform for identifying mosaic-evolution proteins and locating hypervariable regions across large sequence collections.', proof:['Software copyright registered','Biomedical Innovation award','Liyuan Challenge Second Prize'], tech:['HVR detection','Bioinformatics','Pipeline'], image:'/awards/hvrclassify-copyright.png' },
@@ -8,13 +6,16 @@ const projects = [
 ];
 
 export default function Projects() {
-  const [image, setImage] = useState<string | null>(null);
   return <section id="projects" className="project-section"><div className="content-col">
     <div className="section-intro"><div><p className="eyebrow">Selected work</p><h2 className="section-heading">Built to answer<br/>real questions.</h2></div><p>Four projects across biological sequence intelligence, scientific software, and medical knowledge systems.</p></div>
     <div className="project-list">{projects.map((p) => <article className="project-row" key={p.title}>
       <div className="project-meta"><span>{p.num}</span><p>{p.kind}</p></div>
-      <div className="project-main"><h3>{p.title}</h3><h4>{p.statement}</h4><p>{p.desc}</p><div className="project-proof">{p.proof.map(v => <span key={v}>{v}</span>)}</div><div className="project-actions">{p.href && <a href={p.href} target="_blank" rel="noreferrer">{p.action} ↗</a>}<button onClick={() => setImage(p.image)}>View evidence</button></div></div>
+      <div className="project-main"><h3>{p.title}</h3><h4>{p.statement}</h4><p>{p.desc}</p><div className="project-actions">{p.href && <a href={p.href} target="_blank" rel="noreferrer">{p.action} ↗</a>}</div>
+        <details className="project-details"><summary>Results & recognition <span aria-hidden="true">+</span></summary><ul>{p.proof.map(v => <li key={v}>{v}</li>)}</ul>
+          {(p.num === '01' || p.num === '03') && <a href={p.image} target="_blank" rel="noreferrer" className="project-evidence"><img src={p.image} alt={p.num === '01' ? 'C4 National Second Prize certificate' : 'Published AEM paper preview'} loading="lazy"/><span>{p.num === '01' ? 'Award certificate' : 'Publication preview'} ↗</span></a>}
+        </details>
+      </div>
       <div className="project-tech">{p.tech.map(v => <span key={v}>{v}</span>)}</div>
     </article>)}</div>
-  </div>{image && <div className="evidence-modal" role="dialog" aria-modal="true" onClick={() => setImage(null)}><button aria-label="Close" onClick={() => setImage(null)}>×</button><img src={image} alt="Research evidence" onClick={e => e.stopPropagation()}/></div>}</section>;
+  </div></section>;
 }
