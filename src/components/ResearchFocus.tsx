@@ -15,9 +15,9 @@ const foci = [
   },
   {
     index: '03',
-    label: 'Biomedical AI',
-    desc: 'LLM-powered medical tools, clinical data analysis, and AI-assisted diagnostics.',
-    tags: ['LLM Apps', 'Medical AI', 'RAG'],
+    label: 'Small experiments',
+    desc: 'A small LLM-agent project for preparing PBL presentations, built for a college competition.',
+    tags: ['PBL', 'Presentation assistance'],
     className: 'md:col-start-2 md:col-span-2',
   },
 ];
