@@ -12,16 +12,16 @@ export default function Skills() {
       <div className="content-col">
         <p className="section-label">Skills</p>
         <h2 className="section-heading">Tools for discovery.</h2>
-        <div className="grid gap-4 md:grid-cols-2 max-w-2xl">
+        <dl className="skills-grid">
           {groups.map((g) => (
-            <div key={g.label} className="flex items-baseline gap-3 text-sm">
-              <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider w-24 shrink-0">
+            <div key={g.label} className="skill-group">
+              <dt>
                 {g.label}
-              </span>
-              <span className="text-slate-300">{g.items}</span>
+              </dt>
+              <dd>{g.items}</dd>
             </div>
           ))}
-        </div>
+        </dl>
       </div>
     </section>
   );

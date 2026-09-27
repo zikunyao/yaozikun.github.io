@@ -5,6 +5,9 @@ export default function About() {
         <div>
           <p className="eyebrow">Perspective</p>
           <p className="mt-3 text-sm text-[#86868b]">Medicine × Engineering × AI</p>
+          <div className="perspective-sketch" aria-hidden="true">
+            <img src="/illustrations/research-doodle.png" alt="" width="1280" height="1280" loading="lazy"/>
+          </div>
         </div>
         <div className="max-w-3xl">
           <h2 className="editorial-quote">

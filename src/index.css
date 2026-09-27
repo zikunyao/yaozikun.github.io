@@ -54,7 +54,11 @@ section:not(.hero-section)>.content-col { padding-block:100px; }
 .project-tech { display:flex; flex-direction:column; gap:10px; align-items:flex-end; font-size:11px; color:#857b6d; padding-top:12px; }
 .output-section { background:#f0eeea; }.output-list article { display:grid; grid-template-columns:160px 1fr 230px; gap:32px; padding:32px 0; border-top:1px solid #d3cec5; }.output-list article>div { display:flex; flex-direction:column; gap:8px; font-size:11px; color:#766c5e; }.output-list h3 { font-size:20px; line-height:1.4; font-weight:500; letter-spacing:-.02em; }.output-list p { font-size:13px; line-height:1.65; color:#6e6e73; }.output-list a { grid-column:2; font-size:12px; text-decoration:underline; text-underline-offset:4px; }
 .section-divider { border:0; border-top:1px solid #dedad3; }
-#skills .max-w-2xl { max-width:none; gap:28px 60px; }#skills .text-slate-300 { color:#57524a; }#skills .text-slate-500 { color:#8a7b65; }
+.skills-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:28px 60px; }
+.skill-group { min-width:0; }
+.skill-group dt { color:#8a7b65; font-size:12px; font-weight:600; line-height:1.5; letter-spacing:.06em; text-transform:uppercase; overflow-wrap:anywhere; }
+.skill-group dd { margin:10px 0 0; color:#57524a; font-size:14px; line-height:1.7; overflow-wrap:anywhere; }
+@media(max-width:639px) { .skills-grid { grid-template-columns:1fr; gap:24px; } }
 .cv-callout,.contact-callout { display:flex; align-items:center; justify-content:space-between; gap:40px; }.cv-callout h2,.contact-callout h2 { font-size:clamp(32px,4vw,50px); line-height:1.1; letter-spacing:-.045em; font-weight:600; margin-top:15px; }
 #cv>.content-col { padding-block:65px; }#contact { background:#eeece7; }.contact-links { font-size:14px; min-width:320px; }.contact-links p { display:flex; justify-content:space-between; gap:30px; border-bottom:1px solid #d3cec5; padding:14px 0; }.contact-links span { color:#827768; }
 footer { background:#eeece7; border-color:#d3cec5!important; }
@@ -137,4 +141,10 @@ section:not(.hero-section)>.content-col { padding-block:72px; }
 .section-heading, .research-section h2, .editorial-quote,
 .cv-callout h2, .contact-callout h2,
 .visual-project .project-main h3 { font-size:clamp(36px,4vw,52px); line-height:1.1; letter-spacing:-.05em; font-weight:600; }
+.perspective-sketch { margin-top:26px; width:100%; max-width:280px; aspect-ratio:1; border-radius:48% 52% 46% 54%; background:#f5f1e6; display:grid; place-items:center; }
+.perspective-sketch img { width:100%; height:auto; transform:rotate(-3deg); transition:transform .35s ease; }
+.perspective-sketch:hover img { transform:rotate(1deg) translateY(-3px); }
+.has-entered .perspective-sketch { animation:sketch-arrive .8s ease-out both; }
+@keyframes sketch-arrive { from { transform:translateY(12px) rotate(-5deg); } to { transform:none; } }
+@media(max-width:767px) { .perspective-sketch { width:170px; margin-top:22px; } }
 @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; }*,*::before,*::after { animation:none!important; transition:none!important; } }
